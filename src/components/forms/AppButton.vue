@@ -1,10 +1,23 @@
 <script setup>
-// Por enquanto, sem lógica
+// Declara quais eventos o componente pode emitir
+const emit = defineEmits(['click', 'longPress']);
+
+function handleClick() {
+  // Emite o evento
+  emit('click');
+}
+
+function handleLongPress() {
+  emit('longPress');
+}
 </script>
 
 <template>
-  <button class="app-button">
-    <!-- slot: permite inserir conteúdo de fora -->
+  <button
+    @click="handleClick"
+    @mousedown.prevent="handleLongPress"
+    class="app-button"
+  >
     <slot></slot>
   </button>
 </template>

@@ -1,18 +1,14 @@
+<<!-- AppInput.vue -->
 <script setup>
 import { computed } from 'vue';
 
 const props = defineProps({
   modelValue: String,
-  label: String,
-  type: {
-    type: String,
-    default: 'text',
-  },
-  placeholder: String,
 });
 
 const emit = defineEmits(['update:modelValue']);
 
+// Computed para facilitar o uso de v-model interno
 const value = computed({
   get: () => props.modelValue,
   set: (val) => emit('update:modelValue', val),
@@ -20,15 +16,7 @@ const value = computed({
 </script>
 
 <template>
-  <div class="app-input">
-    <label v-if="label" class="label">{{ label }}</label>
-    <input
-      v-model="value"
-      :type="type"
-      :placeholder="placeholder"
-      class="input"
-    />
-  </div>
+  <input v-model="value" type="text" class="app-input" />
 </template>
 
 <style scoped>

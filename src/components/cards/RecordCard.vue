@@ -1,17 +1,26 @@
 <script setup>
-// Props serão explicadas na próxima seção
+const props = defineProps({
+  id: Number,
+  title: String,
+});
+
+const emit = defineEmits(['delete', 'edit']);
+
+function handleDelete() {
+  // Emite evento com o ID
+  emit('delete', props.id);
+}
+
+function handleEdit() {
+  emit('edit', { id: props.id, title: props.title });
+}
 </script>
 
 <template>
   <div class="record-card">
-    <div class="record-header">
-      <h3 class="record-title">
-        <slot name="title">Sem título</slot>
-      </h3>
-    </div>
-    <div class="record-body">
-      <slot></slot>
-    </div>
+    <h3>{{ title }}</h3>
+    <button @click="handleEdit">Editar</button>
+    <button @click="handleDelete">Excluir</button>
   </div>
 </template>
 
