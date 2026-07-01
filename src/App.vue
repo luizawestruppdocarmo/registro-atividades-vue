@@ -1,17 +1,21 @@
 <script setup>
-// Lógica aqui
+import { ref } from 'vue';
+import AppInput from './components/AppInput.vue';
+
+const name = ref('');
+const email = ref('');
 </script>
 
 <template>
-  <div class="app">
-    <h1>Registro de Atividades</h1>
-    <p>App mobile com Vue.js 3</p>
-  </div>
-</template>
+  <AppInput v-model="name" label="Nome" placeholder="Digite seu nome" />
 
-<style scoped>
-.app {
-  padding: 20px;
-  text-align: center;
-}
-</style>
+  <AppInput
+    v-model="email"
+    label="E-mail"
+    type="email"
+    placeholder="seu@email.com"
+  />
+
+  <p>Nome: {{ name }}</p>
+  <p>E-mail: {{ email }}</p>
+</template>
